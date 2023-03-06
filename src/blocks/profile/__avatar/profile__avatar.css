@@ -1,0 +1,17 @@
+.profile__avatar {
+  /* помню max-width, min-width, но с ними ломается */
+  height: 120px;
+  max-width: 120px;
+  /* решил поэксперементировать с этим css-свойством, так как до этого у меня всегда съеживались аватары */
+  clip-path: circle(60px at center);
+}
+
+.profile__avatar:hover {
+  opacity: .2;
+}
+
+@media screen and (max-width: 778px) {
+  .profile__avatar {
+    margin: 0 auto;
+  }
+}

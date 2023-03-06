@@ -1,0 +1,22 @@
+.profile__info {
+  display: grid;
+  grid-template-areas:
+  "name button"
+  "about about";
+  gap: 8px 20px;
+}
+
+@media screen and (max-width: 894px) {
+  .profile__info {
+    gap: 5px 10px;
+  }
+}
+
+@media screen and (max-width: 778px) {
+  .profile__info {
+    grid-template-areas:
+    ". name button"
+    "about about about";
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

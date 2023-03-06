@@ -1,0 +1,16 @@
+.popup-image__container {
+  position: relative;
+  max-width: 100%;
+  min-width: 320px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 540px) {
+  .popup-image__container {
+    padding: 0 40px 0;
+  }
+}
