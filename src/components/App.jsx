@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from './Header.jsx';
 import Main from "./Main.jsx";
 import Footer from "./Footer.jsx";
@@ -9,8 +10,11 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.jsx";
 import EditAvatarPopup from './EditAvatarPopup.jsx';
 import AddPlacePopup from "./AddPlacePopup.jsx";
+import Register from "./Register.jsx";
+import Login from "./Login.jsx";
 
 function App() {
+  const navigate = useNavigate();
   const [isEditProfileOpened, setIsEditProfileOpened] = useState(false);
   const [isAddPlaceOpened, setIsAddPlaceOpened] = useState(false);
   const [isEditAvatarOpened, setIsEditAvatarOpened] = useState(false);
@@ -19,6 +23,8 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   function handleEditProfileClick () {
@@ -113,6 +119,30 @@ function App() {
       <div className="root">
         <div className="page">
             <Header />
+            <Routes>
+              <Route
+                path="/sign-up"
+                element={
+                  <div>
+                    <Register/>
+                  </div>
+                }/>
+
+              <Route
+                path="/sign-in"
+                element={
+                  <div>
+                    <Login/>
+                  </div>
+                }/>
+
+{/*
+              <Route
+                path="*"
+                element={isLoggedIn ? <Navigate to='/'/> : <Navigate to='/sign-in'/> }
+              /> */}
+            </Routes>
+
             <Main
               handleEditProfileClick={handleEditProfileClick}
               handleAddPlaceClick={handleAddPlaceClick}
