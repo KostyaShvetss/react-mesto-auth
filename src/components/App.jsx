@@ -77,6 +77,7 @@ function App() {
         setCards([res, ...cards]);
         closeAllPopups();
       })
+      .catch(err => console.log(err));
   }
 
   function handleCardDelete (card) {
@@ -141,7 +142,7 @@ function App() {
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      auth.getContent(jwt).then(res => {
+      auth.tokenCheck(jwt).then(res => {
         setIsLoggedIn(true);
         setUserEmail(res.data.email);
         navigate('/')
