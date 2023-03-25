@@ -30,10 +30,7 @@ function App() {
   const [cards, setCards] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-  })
+  const [userEmail, setUserEmail] = useState('');
   const [isAuthOk, setIsAuthOk] = useState(false);
 
 
@@ -125,15 +122,20 @@ function App() {
     return auth.authorize(email, password).then((res) => {
       console.log(res);
       if (res.token) {
+        setUserEmail(email);
+        console.log(userEmail);
+        console.log(email);
         setIsLoggedIn(true);
-        setUserData({
-          username: res.user.username,
-          email: res.user.email,
-        });
         localStorage.setItem('jwt', res.token);
-        navigate('/sign-up');
+        navigate('/');
       }
     })
+  }
+
+  const handleSignOut = () => {
+    localStorage.removeItem('jwt');
+    setIsLoggedIn(false);
+    navigate('/sign-in');
   }
 
   const tokenCheck = () => {
@@ -141,10 +143,7 @@ function App() {
     if (jwt) {
       auth.getContent(jwt).then(res => {
         setIsLoggedIn(true);
-        setUserData({
-          username: res.username,
-          email: res.email
-        });
+        setUserEmail(res.data.email);
         navigate('/')
       })
     }
@@ -173,7 +172,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root">
         <div className="page">
-            <Header />
+            <Header userEmail={userEmail} handleSignOut={handleSignOut}/>
             <Routes>
               <Route
                 path="/sign-up"
