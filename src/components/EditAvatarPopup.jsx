@@ -2,15 +2,15 @@ import React from "react";
 import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm.jsx";
 
-function EditAvatarPopup ({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const ref = useRef();
 
-  function handleSubmit (evt) {
+  function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateAvatar(ref.current.value );
+    onUpdateAvatar(ref.current.value);
   }
 
-  useEffect (() => {
+  useEffect(() => {
     ref.current.value = "";
   }, [isOpen])
 
@@ -24,11 +24,11 @@ function EditAvatarPopup ({isOpen, onClose, onUpdateAvatar}) {
       buttonText={'Да'}
       children={
         <>
-          <input ref={ref} id='avatar-input' type="url" className="popup__input popup__input_avatar" name="avatar" required placeholder="Ссылка на картинку"/>
+          <input ref={ref} id='avatar-input' type="url" className="popup__input popup__input_avatar" name="avatar" required placeholder="Ссылка на картинку" />
           <span className="popup__span-error avatar-input-error"></span>
         </>
-    }
-  />
+      }
+    />
   )
 }
 
