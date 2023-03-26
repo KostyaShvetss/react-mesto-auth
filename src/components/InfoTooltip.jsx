@@ -7,7 +7,7 @@ function InfoTooltip(props) {
     <div className={`popup ${props.name}-popup` + (props.isOpen ? ' popup_opened' : '')}>
       <div className="popup__container">
         <button className="popup__close" type="button" aria-label="Закрыть окно" onClick={props.onClose}></button>
-        <img className="popup__icon" src={props.isAuthOk ? tickTip : crossTip} />
+        <img className="popup__icon" src={props.isAuthOk ? tickTip : crossTip} alt={props.isAuthOk ? 'Иконка галочки' : "Иконка крестика"} />
         <h2 className="popup__title popup__title_centered">{props.isAuthOk ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз."}</h2>
       </div>
     </div>
