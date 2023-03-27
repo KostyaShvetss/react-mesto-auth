@@ -142,7 +142,7 @@ function App() {
   const tokenCheck = () => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
-      auth.tokenCheck(jwt).then(res => {
+      auth.checkToken(jwt).then(res => {
         setIsLoggedIn(true);
         setUserEmail(res.data.email);
         navigate('/')
